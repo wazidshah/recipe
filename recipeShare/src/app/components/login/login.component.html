@@ -1,0 +1,19 @@
+<div class="container mt-5 p-5">
+  <form>
+    <div class="text-center">
+      <h1>Recipe Share</h1>
+    </div>
+    <div class="form-group">
+      <label for="username">User Name</label>
+      <input type="text" class="form-control" [(ngModel)]="username" name="username">
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" [(ngModel)]="password" class="form-control" name="password">
+    </div>
+
+    <input type="button" (click) = "signIn()" value="Login" class="btn btn-primary btn-block">
+    <input type="button" (click) = "signUp()" value="Sign Up" class="btn btn-block">
+  </form>
+</div>
