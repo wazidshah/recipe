@@ -4,8 +4,10 @@ A Recipe sharing website
 Usage:
 
 -Clone the project
--Navigate to recipeApi using command prompt and run node index.js. This will start the server for api;
+-Navigate to recipeApi using command prompt and run node index.js. This will start the server for api
+
 -Using another command prompt navigate to recipeShare and run ng serve --open
+
 -run mysql on localhost
 
 
