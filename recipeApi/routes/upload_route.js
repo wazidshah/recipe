@@ -8,7 +8,7 @@ const storage = multer.diskStorage({
       cb(null, 'public/uploads')
     },
     filename: function (req, file, cb) {
-        cb(null, file.fieldname + '-' + Date.now()+'.jpg');
+        cb(null, file.fieldname + '_' + Date.now()+'.jpg');
       }
   })
 
@@ -16,7 +16,10 @@ const upload = multer({storage:storage});
 
 
 uploads.post('/upload',upload.single('image'),(req,res)=>{
-    res.json(req.file.path);
+    let p = req.file.path.split('\\');
+    let response = `${p[1]}/${p[2]}`;
+    
+    res.json(response);
 })
 
 module.exports = uploads;

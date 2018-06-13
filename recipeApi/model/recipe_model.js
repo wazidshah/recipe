@@ -24,10 +24,12 @@ const getAll = ()=>{
         db.query(query,(err,result,fields)=>{
             if(err)
             {
+                //db.end();
                 reject(err);
             }
             else
             {
+                //db.end();
                 success(result);
             }
         });
@@ -44,13 +46,14 @@ const addRecipe = (u_id,description,ingridients)=>{
                 db.query(query,(err,result)=>{
                     if(err)
                     {
+                        //db.end();
                         reject(err);
                     }
                     else
                     {
-                        
+                        //db.end();
                         success({"uuid":uuid});
-                        db.end();
+                        
                         
                     }
                 });
@@ -70,13 +73,15 @@ const addComment = (r_id,comment,from_user)=>{
             db.query(query,(err,result)=>{
                 if(err)
                 {
+                    //db.end();
                     reject(err);
                 }
                 else
                 {
+                    //db.end();
                     console.log(uuid);
                     success({"uuid":uuid});
-                    db.end();
+                    
                     
                 }
                 });
@@ -86,7 +91,34 @@ const addComment = (r_id,comment,from_user)=>{
 
 }
 
-module.exports.addComment = addComment;
+const getAllComments = ()=>{
+    db = new Database();
+    return new Promise((success,reject)=>{
+        uuid.getUUID().then((uuid)=>{
+            let query = `select ${C_R_ID},${COMMENT} from ${COMMENT_TABLE}`;
 
+            db.query(query,(err,result)=>{
+                if(err)
+                {
+                    //db.end();
+                    reject(err);
+                    
+                }
+                else
+                { 
+                    //db.end();
+                    console.log(uuid);
+                    success(result);
+                   
+                    
+                }
+                });
+            });
+
+        });
+}
+
+module.exports.addComment = addComment;
+module.exports.getAllComments = getAllComments;
 module.exports.getAll = getAll;
 module.exports.addRecipe = addRecipe;

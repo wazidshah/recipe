@@ -1,0 +1,37 @@
+<ul class="list-group">
+    <li class="list-group-item">
+      <div class="row">
+          <div class="col-lg-6">
+              <div class="card">
+                <img src="{{imgSrc}}" alt="" class="card-img-top">
+                <div class="card-body">
+                  <p class="card-text">{{description}}</p>
+                  <p class="card-text">{{ingridients}}</p>
+                </div>
+              </div>
+          </div>
+          <div class="col-lg-6">
+              <h1>Comments</h1>
+              <div class="row commentSection" id="">
+                <div class="col-12">
+                  <ul class="list-group" id="">
+                    <li class="list-group-item" *ngFor="let com of comments">
+                      {{com}}
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="row" class="pt-3">
+                <div class="col-12">
+                  <form>
+                    <input type="text" [(ngModel)]="comment" class="form-control" name="comment" id=""/>
+                    <input  #f type="button" value="Comment" id="" (click)="addComment(f)">
+                  </form>
+                </div>
+                  
+              </div>
+          </div>
+      </div>  
+      
+    </li>
+  </ul>

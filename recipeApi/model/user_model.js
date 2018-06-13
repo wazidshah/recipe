@@ -14,16 +14,17 @@ const getUserByUserName=(username)=>{
      return new Promise((success,reject)=>{
         
         db.query(query,(err,results,fields)=>{
-                                                if(err)
-                                                {
-                                                    reject(err);
-                                                }
-                                                else 
-                                                {
-                                                    db.end();
-                                                    success(results);
-                                                }
-                                            });
+                                        if(err)
+                                         {
+                                            //db.end();
+                                            reject(err);
+                                         }
+                                        else 
+                                        {
+                                             //db.end();
+                                            success(results);
+                                        }
+            });
     });
     
 }
@@ -38,11 +39,12 @@ const userExists = (username,password)=>{
         db.query(query,(err,results,fields)=>{
                 if(err)
                 {
+                    //db.end();
                     reject(err);
                 }
                 else 
                 {
-                    db.end();
+                    //db.end();
                     success(results);
                 }
             });
@@ -61,11 +63,12 @@ const signUp = (username,password,token) =>{
         db.query(query,(err,results)=>{
                 if(err)
                 {
+                    //db.end();
                     reject(err);
                 }
                 else 
                 {
-                    db.end();
+                    //db.end();
                     success(results);
                 }
             });
@@ -84,10 +87,12 @@ const tokenExists = (token)=>{
         db.query(query,(err,result,fields)=>{
             if(err)
             {
+                //db.end();
                 reject(err);
             }
             else
             {
+                //db.end();
                 success(result);
             }
         });

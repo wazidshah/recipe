@@ -1,3 +1,8 @@
-<p>
-  list works!
-</p>
+<a routerLink="/add" class="btn btn-secondary m-4">Add Recipe</a> 
+<button class="btn btn-secondary m-4" (click)="logout()">Log Out</button>
+<div class="container">
+  <div *ngFor="let item of list">
+    <app-recipe-component [id]="item.r_id" [item]="item" [commentsArray]="comments"></app-recipe-component>
+  </div>
+  
+</div>

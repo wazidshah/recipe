@@ -25,11 +25,6 @@ recipe.post('/getAll',(req,res)=>{
 });
 
 
-function addFilePath(result)
-{
-
-}
-
 recipe.post('/add',(req,res)=>{
     
     const api_key = req.body.X_API_KEY;
@@ -82,6 +77,13 @@ recipe.post('/comment',(req,res)=>{
     });
 });
 
+recipe.post('/getComments',(req,res)=>{
+    recipe_model.getAllComments()
+    .then(data=>{
+       
+        res.status(200).json(data);
+    });
+});
 
 
 

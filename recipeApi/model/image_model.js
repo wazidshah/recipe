@@ -4,7 +4,7 @@ let db;
 const I_ID = 'i_id';
 const R_ID = 'r_id';
 const PATH = 'path';
-const IMAGE_TABLE = 'recipe_image';
+const IMAGE_TABLE = 'recipe_images';
 
 
 const registerImage = (path,r_id)=>{
@@ -19,10 +19,13 @@ const registerImage = (path,r_id)=>{
                 if(err)
                 {
                     reject(err);
+                    //db.end();
                 }
                 else
                 {
+                   // db.end();
                     success({path:path});
+
                 }
             })
         });
@@ -38,10 +41,12 @@ const getImage = (r_id)=>{
         db.query(query,(err,result,fields)=>{
             if(err)
             {
+                //db.end();
                 reject(err);
             }
             else
             {
+                //db.end();
                 success(result);
             }
         });

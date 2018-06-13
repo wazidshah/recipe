@@ -8,6 +8,8 @@ const app = express();
 const cors = require('cors');
 app.use(cors());
 
+
+app.use(express.static('public'));
 //routes
 const userRoute = require('./routes/user_route');
 const recipeRoute = require('./routes/recipe_route');

@@ -9,6 +9,7 @@ const uuid = ()=>
             db.query('select UUID() as uuid',(err,result,fields)=>{
                     if(err)
                     {
+                        db.end();
                         reject(err);
                     }
                     else
