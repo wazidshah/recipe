@@ -18,7 +18,7 @@ const upload = multer({storage:storage});
 uploads.post('/upload',upload.single('image'),(req,res)=>{
     let p = req.file.path.split('\\');
     let response = `${p[1]}/${p[2]}`;
-    
+    console.log(response);
     res.json(response);
 })
 

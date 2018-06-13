@@ -6,11 +6,11 @@ import {ListService} from '../../../services/listService/list.service';
   styleUrls: ['./add-recipe.component.css']
 })
 export class AddRecipeComponent implements OnInit {
-private file:File;
-private description:string="";
-private ingridients:string="";
-private errorMessage:string;
-private errorShow:boolean=true;
+ file:File;
+ description:string="";
+ ingridients:string="";
+ errorMessage:string;
+ errorShow:boolean=true;
   constructor(private listService:ListService) { }
 
   ngOnInit() {
@@ -61,7 +61,7 @@ private errorShow:boolean=true;
               X_API_KEY:localStorage.getItem('recipeToken'),
               fileName:data
           }
-          
+          console.log(recipe);
           this.listService.addRecipe(recipe).subscribe(data=>{
             console.log(data);
             this.description="";

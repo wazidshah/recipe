@@ -1,4 +1,4 @@
-import { Component, OnInit,Renderer2,ViewChild,ElementRef } from '@angular/core';
+import { Component, OnInit,NgZone } from '@angular/core';
 import {ListService} from '../../services/listService/list.service';
 import { forEach } from '@angular/router/src/utils/collection';
 import {Router} from '@angular/router';
@@ -9,10 +9,10 @@ import {Router} from '@angular/router';
 })
 export class ListComponent implements OnInit {
 
-  private list;
-  private comments;
-  private comment;
-  constructor(private listService:ListService,private router:Router) { }
+  list;
+  comments;
+  comment;
+  constructor(private listService:ListService,private router:Router,private ngZone:NgZone) { }
   
   ngOnInit() {
     this.listService.getList().subscribe(data=>{
@@ -21,8 +21,11 @@ export class ListComponent implements OnInit {
 
     this.listService.getComments()
     .subscribe(data=>{
-        this.comments = data;
-        console.log(this.comments);
+        this.ngZone.run(()=>{
+          this.comments = data;
+          console.log(this.comments);
+        });
+        
     });
   }
 

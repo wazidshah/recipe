@@ -5,7 +5,7 @@ import{HttpClient} from '@angular/common/http';
   providedIn: 'root'
 })
 export class AuthService {
-
+//ec2-52-202-100-255.compute-1.amazonaws.com
   constructor(private http:HttpClient) {}
 
 

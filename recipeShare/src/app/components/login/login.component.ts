@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild,ElementRef } from '@angular/core';
 import {AuthService} from '../../services/auth.service';
 import {Router} from '@angular/router';
 import { timeout } from 'q';
@@ -10,14 +10,23 @@ import { timeout } from 'q';
 })
 export class LoginComponent implements OnInit {
 
-private username;
-private password;
-private showErr:Boolean=true;
-private ErrorMessage:String;
+username;
+password;
+showErr:Boolean=true;
+ErrorMessage:String;
+errorClass:string;
+@ViewChild('usernameEle') usernameEle:ElementRef;
+@ViewChild('passwordEle') passwordEle:ElementRef;
+
 
   constructor(private auth:AuthService,private router:Router) { }
-
+  
   ngOnInit() {
+    if(this.auth.isUserLoggedIn)
+    {
+      this.router.navigate(["/list"]);
+    }
+    console.log(this.usernameEle);
   }
 
 
@@ -28,6 +37,7 @@ private ErrorMessage:String;
         this.router.navigate(['/list'])
     },
     err=>{
+      this.errorClass = "alert-danger";
       this.ErrorMessage=err.error;
       this.showErr = false;
       setTimeout(()=>this.showErr=true,3000);
@@ -38,10 +48,32 @@ private ErrorMessage:String;
 
   signUp()
   {
+    if(!this.usernameEle.nativeElement.validity.valid)
+    {
+      this.errorClass = "alert-danger";
+      this.ErrorMessage="Invalid User Name";
+      this.showErr = false;
+      setTimeout(()=>this.showErr=true,3000);
+      return;
+    }
+
+    if(!this.passwordEle.nativeElement.validity.valid)
+    {
+      this.errorClass = "alert-danger";
+      this.ErrorMessage="Invalid Password";
+      this.showErr = false;
+      setTimeout(()=>this.showErr=true,3000);
+      return;
+    }
+
     this.auth.userSignUp(this.username,this.password).subscribe((data)=>{
-      console.log(data);
+      this.errorClass = "alert-success";
+      this.ErrorMessage="User Created";
+      this.showErr = false;
+      setTimeout(()=>this.showErr=true,3000);
     },
     err=>{
+      this.errorClass = "alert-danger";
       this.ErrorMessage=err.error;
       this.showErr = false;
       setTimeout(()=>this.showErr=true,3000);

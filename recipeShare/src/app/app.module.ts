@@ -11,11 +11,13 @@ import { RecipeComponentComponent } from './components/recipecomponen/recipe-com
 import {AuthService} from './services/auth.service';
 
 import {AuthGuard} from './guard/auth.guard';
+import { NotfoundComponent } from './components/invalidPath/notfound/notfound.component';
 
 const routes:Routes = [
   {path:"", component:LoginComponent},
   {path:"list", component:ListComponent,canActivate:[AuthGuard]},
-  {path:"add",component:AddRecipeComponent,canActivate:[AuthGuard]}
+  {path:"add",component:AddRecipeComponent,canActivate:[AuthGuard]},
+  {path:"**",component:NotfoundComponent}
 ]
 
 
@@ -25,13 +27,14 @@ const routes:Routes = [
     LoginComponent,
     ListComponent,
     AddRecipeComponent,
-    RecipeComponentComponent
+    RecipeComponentComponent,
+    NotfoundComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes,{ useHash: true })
   ],
   providers: [AuthService,AuthGuard],
   bootstrap: [AppComponent]

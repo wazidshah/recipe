@@ -1,26 +1,26 @@
-import { Component, OnInit,Input,NgZone, SimpleChanges } from '@angular/core';
+import { Component, OnInit,Input,NgZone, OnChanges, SimpleChanges } from '@angular/core';
 import {ListService} from '../../../services/listService/list.service';
 @Component({
   selector: 'app-recipe-component',
   templateUrl: './recipe-component.component.html',
   styleUrls: ['./recipe-component.component.css']
 })
-export class RecipeComponentComponent implements OnInit {
+export class RecipeComponentComponent implements OnInit,OnChanges {
 @Input()id:string;
 @Input()item:any;
 @Input()commentsArray:any;
-private imgSrc;
-private description;
-private ingridients;
-private comment;
-private comments=[];
+ imgSrc;
+ description;
+ ingridients;
+ comment;
+ comments=[];
   constructor(private ngzone:NgZone, private listeService:ListService) { }
-
+  //ec2-52-202-100-255.compute-1.amazonaws.com
   ngOnInit() {
     this.imgSrc = 'http://ec2-52-202-100-255.compute-1.amazonaws.com:3000/'+this.item.path;
     this.description=this.item.description;
     this.ingridients = this.item.ingridients;
-    this.ngzone.run(()=>{
+   
       for(let key in this.commentsArray)
       {
         if(this.commentsArray[key].r_id==this.id)
@@ -29,9 +29,22 @@ private comments=[];
         }
      
       }
-    });
+   
   }
 
+
+  ngOnChanges(changes: SimpleChanges)
+  {
+    this.commentsArray = changes.commentsArray.currentValue;
+    for(let key in this.commentsArray)
+      {
+        if(this.commentsArray[key].r_id==this.id)
+        {
+         this.comments.push(this.commentsArray[key].comment);
+        }
+     
+      }
+  }
 
   addComment(event)
   {
@@ -47,4 +60,6 @@ private comments=[];
       this.comment="";
     })
   }
+
+
 }

@@ -6,7 +6,7 @@ import{HttpClient} from '@angular/common/http';
 export class ListService {
 
   constructor(private http:HttpClient) { }
-
+//ec2-52-202-100-255.compute-1.amazonaws.com
   getList()
   {
     let request = {
