@@ -8,7 +8,11 @@ Usage:
 
 -Using another command prompt navigate to recipeShare and run ng serve --open
 
--run mysql on localhost
+-run mysql on localhost and use recipe.sql file to imort all the fields in database
+
+    -open phpmyadmin.
+    -create new database and name it "recipe".
+    -navigate to the database and input the recipe.sql file.
 
 
 Issues:
