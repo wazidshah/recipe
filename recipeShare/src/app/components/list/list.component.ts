@@ -1,6 +1,7 @@
 import { Component, OnInit,Renderer2,ViewChild,ElementRef } from '@angular/core';
 import {ListService} from '../../services/listService/list.service';
 import { forEach } from '@angular/router/src/utils/collection';
+import {Router} from '@angular/router';
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
@@ -11,7 +12,7 @@ export class ListComponent implements OnInit {
   private list;
   private comments;
   private comment;
-  constructor(private listService:ListService) { }
+  constructor(private listService:ListService,private router:Router) { }
   
   ngOnInit() {
     this.listService.getList().subscribe(data=>{
@@ -36,7 +37,7 @@ export class ListComponent implements OnInit {
 logout()
 {
   localStorage.removeItem('recipeToken');
-  window.location.reload();
+  this.router.navigate([""]);
 }
 
 }

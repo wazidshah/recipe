@@ -12,17 +12,17 @@ export class ListService {
     let request = {
       'X_API_KEY':localStorage.getItem('recipeToken')
     }
-    return this.http.post('http://127.0.0.1:3000/recipe/getAll',request);
+    return this.http.post('http://ec2-52-202-100-255.compute-1.amazonaws.com:3000/recipe/getAll',request);
   }
 
   addImage(fd:FormData)
   {
-    return this.http.post('http://127.0.0.1:3000/image/upload',fd);
+    return this.http.post('http://ec2-52-202-100-255.compute-1.amazonaws.com:3000/image/upload',fd);
   }
 
   addRecipe(data)
   {
-    return this.http.post('http://127.0.0.1:3000/recipe/add',data);
+    return this.http.post('http://ec2-52-202-100-255.compute-1.amazonaws.com:3000/recipe/add',data);
   }
 
   getComments()
@@ -30,11 +30,11 @@ export class ListService {
     let request = {
       'X_API_KEY':localStorage.getItem('recipeToken')
     }
-    return this.http.post('http://127.0.0.1:3000/recipe/getComments',request);
+    return this.http.post('http://ec2-52-202-100-255.compute-1.amazonaws.com:3000/recipe/getComments',request);
   }
 
   addComment(request)
   {
-    return this.http.post('http://127.0.0.1:3000/recipe/comment',request)
+    return this.http.post('http://ec2-52-202-100-255.compute-1.amazonaws.com:3000/recipe/comment',request)
   }
 }

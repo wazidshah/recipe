@@ -17,7 +17,7 @@ private comments=[];
   constructor(private ngzone:NgZone, private listeService:ListService) { }
 
   ngOnInit() {
-    this.imgSrc = 'http://127.0.0.1:3000/'+this.item.path;
+    this.imgSrc = 'http://ec2-52-202-100-255.compute-1.amazonaws.com:3000/'+this.item.path;
     this.description=this.item.description;
     this.ingridients = this.item.ingridients;
     this.ngzone.run(()=>{

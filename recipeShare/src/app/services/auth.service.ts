@@ -17,7 +17,7 @@ export class AuthService {
      }
     
      
-     return this.http.post('http://127.0.0.1:3000/user/login',request);
+     return this.http.post('http://ec2-52-202-100-255.compute-1.amazonaws.com:3000/user/login',request);
    }
 
    userSignUp(username,password)
@@ -27,7 +27,7 @@ export class AuthService {
       password:password
      }
 
-     return this.http.post('http://127.0.0.1:3000/user/signup',request);
+     return this.http.post('http://ec2-52-202-100-255.compute-1.amazonaws.com:3000/user/signup',request);
    }
 
    isUserLoggedIn()

@@ -1,23 +1,13 @@
 const Database = require('../shared/database');
-let db;
+const db = require('../shared/database2');
 
 
 const uuid = ()=>
 {
     return new Promise((success,reject)=>{
-        db = new Database();
-            db.query('select UUID() as uuid',(err,result,fields)=>{
-                    if(err)
-                    {
-                        db.end();
-                        reject(err);
-                    }
-                    else
-                    {
-                        db.end();
-                        success(result[0].uuid);
-                    }
-            });
+            db.execute('select UUID() as uuid').then(data=>{
+                success(data[0].uuid);
+            }).catch(err=>reject(err));
     });
 }
 

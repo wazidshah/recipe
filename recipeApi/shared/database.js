@@ -11,11 +11,12 @@ const connection =  function()
         password:config.DATABSE_PASSWORD,
         database:config.DATABASE_NAME
     });
+
+   
     
  
     con.connect((err)=>{
         if(err)throw(err);
-        console.log("Connected");
     });
 
     return con;
